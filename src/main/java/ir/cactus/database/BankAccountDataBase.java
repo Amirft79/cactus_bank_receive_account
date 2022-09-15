@@ -3,6 +3,7 @@ package ir.cactus.database;
 import ir.cactus.model.Account;
 import ir.cactus.model.Customer;
 import ir.cactus.util.AccountType;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -17,9 +18,9 @@ public class BankAccountDataBase {
     private Connection connection=null;
     private PreparedStatement Main_Statement=null;
     private ResultSet Main_Set=null;
+    private Logger logger=Logger.getLogger(BankAccountDataBase.class);
 
-
-    private static final String SELECT_ACCOUNT_DATA="SELECT * FROM bank_account WHERE account_balance>1000";
+     String SELECT_ACCOUNT_DATA="SELECT * FROM bank_account WHERE account_balance>1000";
     private static final String SELECT_CUSTOMER_DATA="SELECT * FROM customers";
 
 
@@ -28,7 +29,7 @@ public class BankAccountDataBase {
             DataSource Main_DataSource=BankAccountConnectionPool.getDataSource();
             connection=Main_DataSource.getConnection();
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 
@@ -44,7 +45,7 @@ public class BankAccountDataBase {
             }
 
         }catch (Exception e){
-                e.printStackTrace();
+            logger.error(e);
         }
         return accounts;
     }
@@ -62,7 +63,7 @@ public class BankAccountDataBase {
                         Main_Set.getString("customer_national_id"),Main_Set.getString("customer_birth_date")));
             }
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e);
         }
 
 

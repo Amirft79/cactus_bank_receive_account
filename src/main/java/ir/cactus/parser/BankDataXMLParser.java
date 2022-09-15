@@ -3,6 +3,7 @@ package ir.cactus.parser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ir.cactus.util.OutPutFileModel;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 
 
 public class BankDataXMLParser {
+
+    private Logger logger=Logger.getLogger(BankDataXMLParser.class);
     private ArrayList<OutPutFileModel> outPutFileModels;
 
     public BankDataXMLParser(ArrayList<OutPutFileModel> outPutFileModels){
@@ -76,7 +79,7 @@ public class BankDataXMLParser {
 
 
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e);
         }
 
 

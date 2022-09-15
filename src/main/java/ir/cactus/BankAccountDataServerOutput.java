@@ -6,12 +6,13 @@ import ir.cactus.model.Customer;
 import ir.cactus.parser.BankDataJsonParser;
 import ir.cactus.parser.BankDataXMLParser;
 import ir.cactus.util.OutPutFileModel;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class BankAccountDataServerOutput {
 
-
+    private static Logger logger=Logger.getLogger(BankAccountDataServerOutput.class);
 
 
 
@@ -24,7 +25,7 @@ public class BankAccountDataServerOutput {
         System.out.println("first we get data from database");
         try {
             Thread.currentThread().sleep(3000);
-        }catch (InterruptedException e){e.printStackTrace();}
+        }catch (InterruptedException e){logger.error(e);}
         BankAccountDataBase dataBase=new BankAccountDataBase();
         for (Customer customer:dataBase.getCustomers()){
             for (Account account:dataBase.getAccounts()){
@@ -47,7 +48,7 @@ public class BankAccountDataServerOutput {
         System.out.println("now we are make the final file for output accounts ........");
         try {
             Thread.currentThread().sleep(2000);
-        }catch (InterruptedException e){e.printStackTrace();}
+        }catch (InterruptedException e){logger.error(e);}
         BankDataJsonParser json_parser=new BankDataJsonParser(outPutFileModels);
         json_parser.MakeFinalJsonFile();
         System.out.println("json file is created"+"\n");

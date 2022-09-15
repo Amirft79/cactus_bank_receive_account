@@ -3,12 +3,15 @@ package ir.cactus.parser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ir.cactus.util.OutPutFileModel;
+import org.apache.log4j.Logger;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class BankDataJsonParser {
     private ArrayList<OutPutFileModel> outPutFileModels;
+
+    private Logger logger=Logger.getLogger(BankDataJsonParser.class);
     public BankDataJsonParser(ArrayList<OutPutFileModel>outPutFileModels){
         this.outPutFileModels=outPutFileModels;
     }
@@ -27,7 +30,7 @@ public class BankDataJsonParser {
             }
             writer.write("]");
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error(e);
         }
 
     }
